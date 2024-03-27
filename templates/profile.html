@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8b70202f53.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <script src="{% static 'script/profile.js' %}"></script>
+    <title>Мій кабінет</title>
+</head>
+<body>
+
+<header>
+    <div class="left-content">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/apple_logo.png' %}" alt="Apple Logo">
+        </a>
+        <a href="{% url 'iphone' %}">
+            <button>
+                <i class="fas fa-mobile-alt"></i> iPhone
+            </button>
+        </a>
+    </div>
+    <div class="right-content">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'profile' %}">
+                <button><i class="fas fa-user"></i> {{ request.user.first_name }}</button>
+            </a>
+            <a href="{% url 'confirm_order' %}">
+                <button><i class="fas fa-shopping-basket"></i><span class="get_cart_count"></span></button>
+            </a>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Вийти</button>
+            </form>
+        {% endif %}
+    </div>
+</header>
+
+<main>
+    
+    <h1 class="my_cabinet">Мій кабінет</h1>
+    <p>Ласкаво просимо, <span id="user-first-name">{{ user.first_name }}</span> <span
+            id="user-last-name">{{ user.last_name }}</span>!</p>
+    <p>Вік: <span id="user-age">{{ user.age }}</span></p>
+    <p>Мобільний: <span id="user-mobile">{{ user.mobile }}</span></p>
+    <p>Адреса: <span id="user-address">{{ user.address }}</span></p>
+    <p>Email: <span id="user-email">{{ user.email }}</span></p>
+
+    <button id="edit-profile-btn" onclick="editProfile()">Редагувати</button>
+
+    <form id="profile-form" method="post" style="display: none;">
+        {% csrf_token %}
+        <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" placeholder="Ім'я">
+        <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" placeholder="Прізвище">
+        <input type="text" name="age" id="age" value="{{ user.age }}" placeholder="Вік">
+        <input type="text" name="mobile" id="mobile" value="{{ user.mobile }}" placeholder="Мобільний">
+        <input type="text" name="address" id="address" value="{{ user.address }}" placeholder="Адреса">
+        <input type="email" name="email" id="email" value="{{ user.email }}" placeholder="Email">
+        <button type="submit" id="update-profile-btn" style="display: none;">Зберегти зміни</button>
+    </form>
+</main>
+<footer>
+    <div class="contact-info">
+        <h3>Контактна інформація:</h3>
+        <p>+380 99 444 45 67</p>
+        <p>exam@mail.com</p>
+    </div>
+</footer>
+</body>
+</html>

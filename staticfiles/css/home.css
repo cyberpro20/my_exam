@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    display: flex; /* Використовуємо flexbox для розміщення елементів */
+    justify-content: space-between; /* Розташовуємо елементи по краях контейнера */
+    align-items: center; /* Вертикально вирівнюємо елементи по центру */
+}
+
+header img {
+    width: 100px;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    height: 100px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}

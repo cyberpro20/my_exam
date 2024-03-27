@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<header>
+    <div class="left-content">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/apple_logo.png' %}" alt="Apple Logo">
+        </a>
+        <div class="dropdown" onmouseover="showiPhoneModels()" onmouseleave="hideiPhoneModels()">
+            <a href="{% url 'iphone' %}">
+                <button>
+                    <i class="fas fa-mobile-alt"></i> iPhone
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="right-content">
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">
+                <button><i class="fas fa-user"></i> {{ user.first_name }}</button>
+            </a>
+            <a href="{% url 'confirm_order' %}">
+                <button><i class="fas fa-shopping-basket"></i><span class="get_cart_count"></span></button>
+            </a>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Вийти</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Вхід</a>
+        {% endif %}
+    </div>
+</header>
+<main>
+    <div class="container">
+        <h2>Авторизація</h2>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <strong>{{ field|title }}</strong>: {{ error }}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="id_mobile_or_email" id="mobile_or_email_label"></label> <br>
+                <input type="text" id="id_mobile_or_email" name="mobile_or_email" placeholder="Phone або Email"
+                       onfocus="onInputFocus('id_mobile_or_email', 'mobile_or_email_label', 'Логін або Email');"
+                       onblur="onInputBlur('id_mobile_or_email', 'mobile_or_email_label', 'Логін або Email');"> <br>
+            </div>
+            <div>
+                <label for="id_password" id="password_label"></label> <br>
+                <input type="password" id="id_password" name="password" placeholder="Password"
+                       onfocus="onInputFocus('id_password', 'password_label', 'Пароль');"
+                       onblur="onInputBlur('id_password', 'password_label', 'Пароль');"> <br>
+            </div>
+            <button type="submit">Вхід</button>
+        </form>
+    </div>
+
+    <div class="register-link">
+        <a href="{% url 'register' %}">Зареєструватися</a>
+    </div>
+</main>
+<footer>
+    <div class="contact-info">
+        <h3>Контактна інформація:</h3>
+        <p>+380 99 444 45 67</p>
+        <p>exam@mail.com</p>
+    </div>
+</footer>
+</body>
+</html>

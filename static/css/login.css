@@ -1,0 +1,158 @@
+/* styles.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 360px;
+    height: 390px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ebece5;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 80%;
+    padding: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #4f6cc3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.register-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-link a {
+    color: #1a1309;
+    text-decoration: none;
+}
+
+header {
+    background-color: #0b0c0d;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    width: 60px;
+    height: 60px;
+    padding: 0 40px;
+}
+
+header .left-content {
+    display: flex;
+    align-items: center;
+}
+
+header .left-content button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer; /* Додали курсор */
+}
+
+header .right-content {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #e6f1f0;
+}
+
+button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer; /* Додали курсор */
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer; /* Додали курсор */
+}
+
+footer {
+    background-color: #0b0c0d;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2f5456;
+    width: 200px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content p {
+    margin: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

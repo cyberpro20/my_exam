@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/confirm_order.css' %}">
+    <script src="https://kit.fontawesome.com/8b70202f53.js" crossorigin="anonymous"></script>
+    <script src="{% static 'script/confirm_order.js' %}"></script>
+    <title>Магазин Apple техніки</title>
+</head>
+<body>
+<header>
+    <div class="left-content">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/apple_logo.png' %}" alt="Apple Logo">
+        </a>
+        <div class="dropdown" onmouseover="showiPhoneModels()" onmouseleave="hideiPhoneModels()">
+            <a href="{% url 'iphone' %}">
+                <button>
+                    <i class="fas fa-mobile-alt"></i> iPhone
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="right-content">
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">
+                <button><i class="fas fa-user"></i> {{ user.first_name }}</button>
+            </a>
+            <a href="{% url 'confirm_order' %}">
+                <button><i class="fas fa-shopping-basket"></i><span class="get_cart_count"></span></button>
+            </a>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Вийти</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Log in</a>
+        {% endif %}
+    </div>
+</header>
+<main>
+    <h1>Корзина</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Назва товару</th>
+            <th>Колір</th>
+            <th>Ціна</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart_items %}
+            <tr>
+                <td>{{ item.item.name }}</td>
+                <td>{{ item.item.color }}</td>
+                <td>${{ item.item.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.total_price }}</td>
+                <td>
+                    <button onclick="removeItem({{ item.id }})"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <p>Загальна сума: ${{ total_price }}</p>
+        <a href="{% url 'confirm_order' %}">Підтвердити замовлення</a>
+    </div>
+</main>
+
+<footer>
+    <div class="contact-info">
+        <h3>Контактна інформація:</h3>
+        <p>+380 99 444 45 67</p>
+        <p>exam@mail.com</p>
+    </div>
+</footer>
+</body>
+</html>

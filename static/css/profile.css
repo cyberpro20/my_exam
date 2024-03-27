@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: #0b0c0d;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    width: 60px;
+    height: 60px;
+    padding: 0 40px;
+}
+
+header .left-content {
+    display: flex;
+    align-items: center;
+}
+
+header .left-content button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+header .right-content {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+
+header .right-content button {
+    color: #fafafa;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #e6f1f0;
+}
+
+main #edit-profile-btn, #update-profile-btn {
+    color: #000000;
+}
+
+main .my_cabinet{
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+button {
+    color: #fafafa;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #0b0c0d;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
